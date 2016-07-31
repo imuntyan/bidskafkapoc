@@ -1,0 +1,7 @@
+{
+  "generator-spring-rest": {
+    "baseName": "bidskafkapoc",
+    "packageName": "com.openlane.bids",
+    "packageNameGenerated": "com.openlane.bids.generated"
+  }
+}

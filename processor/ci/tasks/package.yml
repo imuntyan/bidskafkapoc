@@ -1,0 +1,15 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: niaquinto/gradle}
+
+inputs:
+  - name: resource-bidskafkapoc
+
+outputs:
+  - name: resource-jar
+
+run:
+  path: ./resource-bidskafkapoc/ci/scripts/package.sh
+

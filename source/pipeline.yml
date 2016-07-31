@@ -1,0 +1,28 @@
+---
+resources:
+- name: resource-bidskafkapoc
+  type: git
+  source:
+    uri: https://github.com/reasonthearchitect/bidskafkapoc.git
+    branch: master
+
+- name: bidskafkapoc-docker-image
+  type: docker-image
+  source:
+    repository: {{docker-hub-image-name}}
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-api-key}}
+
+jobs:
+- name: job-build-docker
+  public: true
+  serial: true
+  plan:
+    - get: resource-bidskafkapoc
+      trigger: true
+    - task: job-build
+      file: resource-bidskafkapoc/ci/tasks/package.yml
+    - put: bidskafkapoc-docker-image
+      params:
+        build: resource-jar

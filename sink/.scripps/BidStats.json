@@ -1,0 +1,19 @@
+{
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "count",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "createTime",
+            "fieldType": "DateTime"
+        }
+    ]
+}
