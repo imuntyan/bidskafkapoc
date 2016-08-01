@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface BidProducerMetadata {
 	 
-		@Output("bidsin")
+		@Output("bids")
     	MessageChannel post();
 }

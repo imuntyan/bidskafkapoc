@@ -1,7 +1,7 @@
 package com.openlane.bids.functional
 
 import com.jayway.restassured.RestAssured
-import com.tek.myservice.Application
+import com.openlane.bids.Application
 import org.junit.Before
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Value

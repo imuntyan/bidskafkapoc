@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface BidStatsProcessorMetadata {
 	
-		@Input("BidMessage")
+		@Input("bids")
     	SubscribableChannel read();
 	 
 		@Output("bidstats")

@@ -14,6 +14,13 @@ spring:
     mvc:
         favicon:
             enabled: false
+    cloud:
+        stream:
+            kafka:
+                binder:
+                    brokers: 54.172.221.248:9092
+                    zkNodes: 54.172.221.248:2181
+
 
 swagger:
     title: bidskafkapoc API
