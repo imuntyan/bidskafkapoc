@@ -16,10 +16,24 @@ spring:
             enabled: false
     cloud:
         stream:
+            bindings:
+                bids:
+                    group: bidsgr
+                bidstats:
+                    group: bidstatsgr
             kafka:
                 binder:
                     brokers: 54.172.221.248:9092
                     zkNodes: 54.172.221.248:2181
+                bindings:
+                    bids:
+                        consumer: --
+#                            startOffset: earliest
+#                            resetOffsets: true
+                    bidstats:
+                        consumer: --
+#                            startOffset: earliest
+#                            resetOffsets: true
 
 swagger:
     title: bidskafkapoc API

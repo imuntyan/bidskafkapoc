@@ -13,6 +13,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import lombok.extern.java.Log;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 @Log
 @EnableBinding(BidStatsProcessorMetadata.class)
@@ -21,15 +23,30 @@ public class BidStatsProcessorProcessor {
 	@Autowired
 	ObjectMapper mapper;
 
+	Map<Long, Integer> counts = new HashMap<>();
+	private BigDecimal increment(BigDecimal vehicleId)
+	{
+		Long vId = vehicleId.longValue();
+		Integer count = counts.get(vId);
+		if (count == null) count = 0;
+
+		count++;
+		counts.put(vId, count);
+
+		return new BigDecimal(count);
+	}
+
 	@StreamListener("bids")
   	@SendTo("bidstats")
   	public Message<?> handle(BidDto bid) {
     	BidStatsDto bidStatsDto= new BidStatsDto();
 
-		bidStatsDto.setCount(BigDecimal.ONE);
+		BigDecimal vehicleId = bid.getVehicleId();
+
+		bidStatsDto.setCount(increment(vehicleId));
 		bidStatsDto.setAmount(bid.getAmount());
 		bidStatsDto.setCreateTime(bid.getCreateTime());
-		bidStatsDto.setVehicleId(bid.getVehicleId());
+		bidStatsDto.setVehicleId(vehicleId);
 
 		try {
 			return MessageBuilder.withPayload(
