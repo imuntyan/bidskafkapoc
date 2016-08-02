@@ -4,63 +4,98 @@
     <title>Hello WebSocket</title>
     <script src="sockjs-0.3.4.js"></script>
     <script src="stomp.js"></script>
-    <script type="text/javascript">
-        var stompClient = null;
 
-        function setConnected(connected) {
-            document.getElementById('connect').disabled = connected;
-            document.getElementById('disconnect').disabled = !connected;
-            document.getElementById('conversationDiv').style.visibility = connected ? 'visible' : 'hidden';
-            document.getElementById('response').innerHTML = '';
-        }
+    <script src='http://cdn.ractivejs.org/latest/ractive.js'></script>
 
-        function connect() {
-            var socket = new SockJS('/websocket');
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, function(frame) {
-                setConnected(true);
-                console.log('Connected: ' + frame);
-                stompClient.subscribe('/topic/tracking', function(greeting){
-                    showGreeting(greeting.body);
-                });
-            });
-        }
-
-        function disconnect() {
-            if (stompClient != null) {
-                stompClient.disconnect();
-            }
-            setConnected(false);
-            console.log("Disconnected");
-        }
-
-        function sendName() {
-            var name = document.getElementById('name').value;
-            stompClient.send("/app/activity", {}, JSON.stringify({ 'carID': name }));
-        }
-
-        function showGreeting(message) {
-            var response = document.getElementById('response');
-            var p = document.createElement('p');
-            p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(message));
-            response.appendChild(p);
-        }
+    <script id='template' type='text/ractive'>
+        {{#sections:name}}
+        <p>
+            {{name}}: {{amount}} - {{createTime}} - {{count}}
+        </p>
+        {{/sections}}
     </script>
+    <script type="text/javascript">
+
+        (function(window){
+
+            var stompClients = {};
+
+            function connect(vehicleId) {
+                var socket = new SockJS('/websocket');
+                var stompClient = Stomp.over(socket);
+                stompClients[vehicleId] = stompClient;
+                stompClient.connect({}, function(frame) {
+                    console.log('Connected: ' + frame);
+                    stompClient.subscribe('/topic/tracking/'+vehicleId, function(data){
+                        var json = JSON.parse(data.body);
+                        var payload = json.payload;
+                        if (payload) {
+                            var vh = JSON.parse(payload);
+                            var vehicleId = vh.vehicleId;
+                            if (vehicleId)
+                            {
+                                sections[vehicleId] = vh;
+                                updateView();
+                            }
+                        }
+                    });
+                });
+            }
+
+            function disconnect(vehicleId) {
+                var stompClient = stompClients[vehicleId];
+                if (stompClient != null) {
+                    stompClient.disconnect();
+                }
+                stompClients[vehicleId] = undefined;
+                console.log("Disconnected");
+            }
+
+            var sections = {};
+            function addSection() {
+                var vehicleId = document.getElementById('vehicleId').value;
+                if (sections[vehicleId]) return;
+                sections[vehicleId] = {};
+                updateView();
+                connect(vehicleId);
+            }
+
+            window.addSection = addSection;
+
+            var ractive;
+
+            window.onload = function() {
+                updateView();
+            };
+
+            function updateView() {
+                ractive = new Ractive({
+                    el: "#sections",
+                    template: "#template",
+                    data: { sections: sections }
+                });
+            }
+
+
+        })(this);
+    </script>
+
 </head>
-<body onload="disconnect()">
+<body >
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable
     Javascript and reload this page!</h2></noscript>
 <div>
-    <div>
-        <button id="connect" onclick="connect();">Connect</button>
-        <button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
-    </div>
     <div id="conversationDiv">
-        <label>Enter car id</label><input type="text" id="name" />
-        <button id="sendName" onclick="sendName();">Send</button>
+        <label>Enter vehicle id</label><input type="text" id="vehicleId" />
+        <button id="sendName" onclick="addSection();">Watch</button>
         <p id="response"></p>
+
+
+    </div>
+    <div id="sections">
+
     </div>
 </div>
+
 </body>
 </html>

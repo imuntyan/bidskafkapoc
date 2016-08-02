@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.logging.Level;
 import lombok.extern.java.Log;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -37,12 +39,21 @@ public class BidConsumerSink {
     }
 
     public void sendToClients(BidStatsDto dto) {
-        String json = "";
         try {
-            json = mapper.writeValueAsString(dto);
-        } catch (Exception ex) {ex.printStackTrace();}
-        log.log(Level.INFO, "Sending to clients: " + json);
-        messagingTemplate.convertAndSend("/topic/tracking", json);
+
+            String vehicleId = dto.getVehicleId().toPlainString();
+
+            //json = mapper.writeValueAsString(dto).setHeader("contentType", "application/json");
+            Message message = MessageBuilder.withPayload(
+                    mapper.writeValueAsString(dto)
+            )
+                    .setHeader("contentType", "application/json")
+                    .build();
+            log.log(Level.INFO, "Sending to clients: " + message);
+            messagingTemplate.convertAndSend("/topic/tracking/" + vehicleId, message);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

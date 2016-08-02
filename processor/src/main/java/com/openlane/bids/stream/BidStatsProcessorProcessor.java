@@ -29,6 +29,7 @@ public class BidStatsProcessorProcessor {
 		bidStatsDto.setCount(BigDecimal.ONE);
 		bidStatsDto.setAmount(bid.getAmount());
 		bidStatsDto.setCreateTime(bid.getCreateTime());
+		bidStatsDto.setVehicleId(bid.getVehicleId());
 
 		try {
 			return MessageBuilder.withPayload(

@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 @Data
 public class BidDto {
 
+    private BigDecimal vehicleId;
+
     private BigDecimal amount;
 
     private DateTime createTime;
