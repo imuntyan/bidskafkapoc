@@ -27,11 +27,13 @@ spring:
                     zkNodes: 54.172.221.248:2181
                 bindings:
                     bids:
-                        consumer: --
+                        consumer:
+                            a: b
 #                            startOffset: earliest
 #                            resetOffsets: true
                     bidstats:
-                        consumer: --
+                        consumer:
+                            a: b
 #                            startOffset: earliest
 #                            resetOffsets: true
 
