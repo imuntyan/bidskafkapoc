@@ -3,7 +3,7 @@ resources:
 - name: resource-bidskafkapoc
   type: git
   source:
-    uri: https://github.com/reasonthearchitect/bidskafkapoc.git
+    uri: https://github.com/imuntyan/bidskafkapoc.git
     branch: master
 
 - name: bidskafkapoc-docker-image
