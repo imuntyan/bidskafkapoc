@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd resource-bidskafkapoc
+cd resource-bidskafkapoc/source
 
 export TERM=${TERM:-dumb}
 
