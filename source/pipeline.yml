@@ -22,7 +22,7 @@ jobs:
     - get: resource-bidskafkapoc
       trigger: true
     - task: job-build
-      file: resource-bidskafkapoc/ci/tasks/package.yml
+      file: resource-bidskafkapoc/source/ci/tasks/package.yml
     - put: bidskafkapoc-docker-image
       params:
         build: resource-jar
