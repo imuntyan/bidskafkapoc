@@ -6,7 +6,13 @@ export TERM=${TERM:-dumb}
 
 gradle -Dorg.gradle.native=false build
 
+pwd
+
 ls build/libs
+
+ls ..
+
+ls ../resource-jar
 
 cp build/libs/bidskafkapoc.jar ../resource-jar
 
