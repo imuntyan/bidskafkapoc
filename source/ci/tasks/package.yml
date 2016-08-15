@@ -2,7 +2,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: imuntyan/gradle}
+  source: {repository: imuntyan/gradle:v1}
 
 inputs:
   - name: resource-bidskafkapoc
