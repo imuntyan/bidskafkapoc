@@ -10,10 +10,10 @@ pwd
 
 ls build/libs
 
-ls ..
+ls ../..
 
-ls ../resource-jar
+ls ../../resource-jar
 
-cp build/libs/bidskafkapoc.jar ../resource-jar
+cp build/libs/bidskafkapoc.jar ../../resource-jar
 
-cp Dockerfile ../resource-jar
+cp Dockerfile ../../resource-jar
