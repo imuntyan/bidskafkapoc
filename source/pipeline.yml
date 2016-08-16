@@ -49,7 +49,7 @@ jobs:
   serial: true
   plan:
     - get: resource-bidskafkapoc
-      trigger: true
+      #trigger: true
     - task: job-build
       file: resource-bidskafkapoc/source/ci/tasks/package.yml
     - put: bidskafkapoc-docker-image
