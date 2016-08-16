@@ -15,6 +15,7 @@ resources:
 
 - name: bidskafkapoc-docker-image
   type: docker-image
+  image:
   source:
     repository: {{docker-hub-image-name}}
     email: {{docker-hub-email}}
@@ -55,6 +56,8 @@ jobs:
     - put: bidskafkapoc-docker-image
       params:
         build: resource-jar
+      get_params:
+        save: true
 
 - name: job-deploy-kubernetes
   public: true
