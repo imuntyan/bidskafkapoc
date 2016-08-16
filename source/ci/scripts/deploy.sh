@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd k8s_input
+#cd k8s_input
 
 ls -al
