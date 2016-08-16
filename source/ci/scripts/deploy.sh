@@ -1,5 +1,3 @@
 #!/bin/sh
 
-apt-get install tree
-
-tree -a
+ls -al
