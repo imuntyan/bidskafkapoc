@@ -6,7 +6,7 @@ image_resource:
 
 inputs:
   - name: resource-bidskafkapoc
-  - name: resource-jar
+  - name: bidskafkapoc-docker-image
 
 outputs:
   - name: resource-k8s
