@@ -32,16 +32,16 @@ resources:
     admin_key: {{kubernetes_admin_key}}
     admin_cert: {{kubernetes_admin_cert}}
 
-- name: kubernetes
-  type: kubernetes
-  source:
-    cluster_url: https://k8s-coreos-cluster
-    namespace: default
-    cluster_ca: {{kubernetes_cluster_ca}}
-    admin_key: {{kubernetes_admin_key}}
-    admin_cert: {{kubernetes_admin_cert}}
-    resource_type: deployment
-    resource_name: kafka-source
+#- name: kubernetes
+#  type: kubernetes
+#  source:
+#    cluster_url: https://k8s-coreos-cluster
+#    namespace: default
+#    cluster_ca: {{kubernetes_cluster_ca}}
+#    admin_key: {{kubernetes_admin_key}}
+#    admin_cert: {{kubernetes_admin_cert}}
+#    resource_type: deployment
+#    resource_name: kafka-source
 
 jobs:
 - name: job-build-docker
