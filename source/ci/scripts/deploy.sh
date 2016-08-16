@@ -1,5 +1,5 @@
 #!/bin/sh
 
-#cd k8s_input
+cd bidskafkapoc-docker-image
 
 ls -al
