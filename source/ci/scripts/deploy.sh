@@ -1,5 +1,5 @@
 #!/bin/sh
 
-cd resource-jar
+cd k8s_input
 
 ls -al

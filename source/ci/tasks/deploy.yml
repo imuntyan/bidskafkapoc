@@ -5,10 +5,10 @@ image_resource:
   source: {repository: imuntyan/gradle, tag: v1}
 
 inputs:
-  - name: resource-bidskafkapoc
+  - name: k8s_input
 
 outputs:
-  - name: resource-jar
+  - name: k8s_output
 
 run:
   path: ./resource-bidskafkapoc/source/ci/scripts/deploy.sh
