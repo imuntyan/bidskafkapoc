@@ -15,7 +15,7 @@ resources:
 
 - name: bidskafkapoc-docker-image
   type: docker-image
-  image:
+  save: true
   source:
     repository: {{docker-hub-image-name}}
     email: {{docker-hub-email}}
@@ -71,5 +71,5 @@ jobs:
       file: resource-bidskafkapoc/source/ci/tasks/deploy.yml
     - put: k8s
       params:
-        image_name: imuntyan/newwave
+        image_name: bidskafkapoc-docker-image/image
         image_tag: latest
