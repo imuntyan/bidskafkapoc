@@ -1,4 +1,11 @@
 ---
+
+resource_types:
+- name: kubernetes
+  type: docker-image
+  source:
+    repository: jcderr/concourse-kubernetes-resource
+
 resources:
 - name: resource-bidskafkapoc
   type: git
@@ -14,6 +21,28 @@ resources:
     username: {{docker-hub-username}}
     password: {{docker-hub-api-key}}
 
+- name: k8s
+  type: kubernetes
+  source:
+    cluster_url: https://k8s-coreos-cluster
+    namespace: default
+    resource_type: deployment
+    resource_name: myapp
+    cluster_ca: {{kubernetes_cluster_ca}}
+    admin_key: {{kubernetes_admin_key}}
+    admin_cert: {{kubernetes_admin_cert}}
+
+- name: kubernetes
+  type: kubernetes
+  source:
+    cluster_url: https://k8s-coreos-cluster
+    namespace: default
+    cluster_ca: {{kubernetes_cluster_ca}}
+    admin_key: {{kubernetes_admin_key}}
+    admin_cert: {{kubernetes_admin_cert}}
+    resource_type: deployment
+    resource_name: kafka-source
+
 jobs:
 - name: job-build-docker
   public: true
@@ -26,3 +55,20 @@ jobs:
     - put: bidskafkapoc-docker-image
       params:
         build: resource-jar
+
+- name: job-deploy-kubernetes
+  public: true
+  serial: true
+  plan:
+    - get: bidskafkapoc-docker-image
+      passed: [job-build-docker]
+      trigger: true
+    - get: resource-bidskafkapoc
+      passed: [job-build-docker]
+      trigger: true
+    - task: job-deploy
+      file: resource-bidskafkapoc/source/ci/tasks/deploy.yml
+    - put: k8s
+      params:
+        image_name: imuntyan/newwave
+        image_tag: latest
