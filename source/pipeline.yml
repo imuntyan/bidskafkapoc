@@ -69,6 +69,9 @@ jobs:
       passed: [job-build-docker]
     - task: job-deploy
       file: resource-bidskafkapoc/source/ci/tasks/deploy.yml
+      params:
+        k8s_ip: {{kubernetes_cluster_ip}}
+        k8s_dns_name: {{kubernetes_cluster_url}}
     - put: k8s
       params:
         image_name: bidskafkapoc-docker-image/repository

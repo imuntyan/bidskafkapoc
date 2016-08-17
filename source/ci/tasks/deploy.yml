@@ -11,6 +11,10 @@ inputs:
 outputs:
   - name: resource-k8s
 
+params:
+  k8s_ip:
+  k8s_dns_name:
+
 run:
   path: ./resource-bidskafkapoc/source/ci/scripts/deploy.sh
 
