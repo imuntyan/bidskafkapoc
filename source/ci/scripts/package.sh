@@ -8,6 +8,12 @@ export TERM=${TERM:-dumb}
 
 pwd
 
+cat /etc/hosts
+
+echo "$k8s_ip $k8s_dns_name" >> /etc/hosts
+
+cat /etc/hosts
+
 ls build/libs
 
 ls ../..
