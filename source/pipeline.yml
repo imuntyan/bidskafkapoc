@@ -25,7 +25,7 @@ resources:
 - name: k8s
   type: kubernetes
   source:
-    cluster_url: https://k8s-coreos-cluster
+    cluster_url: {{kubernetes_cluster_url}}
     namespace: default
     resource_type: deployment
     resource_name: myapp
