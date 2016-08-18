@@ -12,6 +12,6 @@ cat /etc/hosts
 
 cat /etc/resolv.conf
 
-apt-get install -y dig
+apt-get install -y nslookup
 
 nslookup google.com
