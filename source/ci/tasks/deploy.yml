@@ -2,8 +2,8 @@ platform: linux
 
 image_resource:
   type: docker-image
-  #source: {repository: imuntyan/gradle, tag: v1}
-  source: {repository: wernight/kubectl}
+  source: {repository: imuntyan/gradle, tag: v1}
+  #source: {repository: wernight/kubectl}
 
 inputs:
   - name: resource-bidskafkapoc
