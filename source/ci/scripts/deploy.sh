@@ -11,6 +11,7 @@ echo '$k8s_admin_key' | base64 -d >> credentials/admin-key.pem
 
 ls -al
 
+echo '$k8s_cluster_ca'
 
 cat credentials/ca.pem
 
