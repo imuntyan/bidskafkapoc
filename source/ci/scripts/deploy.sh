@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "$k8s_ip $k8s_dns_name"
 
 cd resource-bidskafkapoc/source/ci/scripts/kubernetes
 
