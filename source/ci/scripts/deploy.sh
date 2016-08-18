@@ -14,4 +14,4 @@ cat /etc/resolv.conf
 
 apt-get install -y dig
 
-dig google.com
+nslookup google.com
