@@ -12,6 +12,6 @@ echo '$k8s_admin_key' | base64 -d >> credentials/admin-key.pem
 ls -al
 
 
-dig k8s.kubernetes.net
+cat credentials/ca.pem
 
 kubectl --kubeconfig=kubeconfig get nodes
