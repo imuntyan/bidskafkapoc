@@ -75,7 +75,3 @@ jobs:
         k8s_cluster_ca: {{kubernetes_cluster_ca}}
         k8s_admin_key: {{kubernetes_admin_key}}
         k8s_admin_cert: {{kubernetes_admin_cert}}
-    - put: k8s
-      params:
-        image_name: bidskafkapoc-docker-image/repository
-        image_tag: bidskafkapoc-docker-image/tag

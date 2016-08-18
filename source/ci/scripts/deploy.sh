@@ -16,4 +16,4 @@ echo "$k8s_cluster_ca"
 
 cat credentials/ca.pem
 
-kubectl --kubeconfig=kubeconfig get nodes
+kubectl --kubeconfig=kubeconfig run my-source --image=imuntyan/newwave:latest --replicas=2 --port=80
