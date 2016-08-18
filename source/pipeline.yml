@@ -66,7 +66,7 @@ jobs:
     - get: bidskafkapoc-docker-image
       passed: [job-build-docker]
     - get: resource-bidskafkapoc
-      passed: [job-build-docker]
+      #passed: [job-build-docker]
     - task: job-deploy
       file: resource-bidskafkapoc/source/ci/tasks/deploy.yml
       params:
