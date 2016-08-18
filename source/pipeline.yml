@@ -72,6 +72,9 @@ jobs:
       params:
         k8s_ip: {{kubernetes_cluster_ip}}
         k8s_dns_name: {{kubernetes_cluster_url}}
+        k8s_cluster_ca: {{kubernetes_cluster_ca}}
+        k8s_admin_key: {{kubernetes_admin_key}}
+        k8s_admin_cert: {{kubernetes_admin_cert}}
     - put: k8s
       params:
         image_name: bidskafkapoc-docker-image/repository
