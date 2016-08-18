@@ -5,9 +5,9 @@ cd resource-bidskafkapoc/source/ci/scripts/kubernetes
 
 mkdir credentials
 
-base64 --decode --wrap=0 '$k8s_cluster_ca' >> credentials/ca.pem
-base64 --decode --wrap=0 '$k8s_admin_cert' >> credentials/admin.pem
-base64 --decode --wrap=0 '$k8s_admin_key' >> credentials/admin-key.pem
+echo '$k8s_cluster_ca' | base64 --decode --wrap=0  >> credentials/ca.pem
+echo '$k8s_admin_cert' | base64 --decode --wrap=0  >> credentials/admin.pem
+echo '$k8s_admin_key' | base64 --decode --wrap=0  >> credentials/admin-key.pem
 
 ls -al
 
