@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: poc-kafka-source-controller
+spec:
+  replicas: 2
+  selector:
+    app: poc-kafka-source
+  template:
+    metadata:
+      labels:
+        app: poc-kafka-source
+    spec:
+      containers:
+      - name: poc-kafka-source
+        image: imuntyan/newwave
+        ports:
+        - containerPort: 8090
+        env:
+        - name: MY_VAR
+          value: "test"
