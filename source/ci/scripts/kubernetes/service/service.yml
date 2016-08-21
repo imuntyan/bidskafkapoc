@@ -7,10 +7,8 @@ metadata:
     app: kafka
 spec:
   ports:
-  - port: 80
-    name: poc-kafka-source-port
+  - port: 8090
     targetPort: 8090
-    protocol: TCP
   selector:
     app: poc-kafka-source
   type: LoadBalancer
