@@ -18,8 +18,8 @@ spring:
         stream:
             kafka:
                 binder:
-                    brokers: 54.172.221.248:9092
-                    zkNodes: 54.172.221.248:2181
+                    brokers: ae920f55667d011e6bb0a0a115674f32-134534388.us-east-1.elb.amazonaws.com:9092
+                    zkNodes: a28b990ad67d011e6bb0a0a115674f32-870432376.us-east-1.elb.amazonaws.com:2181, a28c4de0267d011e6bb0a0a115674f32-1462874061.us-east-1.elb.amazonaws.com:2181, a28d1fd5a67d011e6bb0a0a115674f32-490104583.us-east-1.elb.amazonaws.com:2181
 
 
 swagger:
