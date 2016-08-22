@@ -49,4 +49,4 @@ jobs:
         k8s_admin_cert: {{kubernetes_admin_cert}}
         deploy_image_name: {{docker-hub-image-name}}
         app_name: poc-kafka-proc
-        app_port: 8090
+        app_port: 8091
