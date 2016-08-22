@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: poc-kafka-source-service
   labels:
-    app: kafka
+    app: poc-kafka-source
 spec:
   ports:
   - port: 8090
