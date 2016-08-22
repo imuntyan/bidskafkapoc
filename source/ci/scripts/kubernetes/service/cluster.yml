@@ -2,21 +2,21 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: poc-kafka-source-controller
+  name: ${APP_NAME}-controller
 spec:
   replicas: 2
   selector:
-    app: poc-kafka-source
+    app: ${APP_NAME}
   template:
     metadata:
       labels:
-        app: poc-kafka-source
+        app: ${APP_NAME}
     spec:
       containers:
-      - name: poc-kafka-source
+      - name: ${APP_NAME}
         image: ${DEPLOY_IMAGE_NAME}
         ports:
-        - containerPort: 8090
+        - containerPort: ${APP_PORT}
         env:
         - name: MY_VAR
           value: "test"
