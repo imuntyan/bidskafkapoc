@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: poc-kafka-source
-        image: {{ env["DEPLOY_IMAGE_NAME"] }}
+        image: ${DEPLOY_IMAGE_NAME}
         ports:
         - containerPort: 8090
         env:

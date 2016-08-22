@@ -18,4 +18,4 @@ kubectl config set DEPLOY_IMAGE_NAME "$deploy_image_name"
 
 kubectl --kubeconfig=kubeconfig apply -f service/service.yml
 
-kubectl --kubeconfig=kubeconfig apply -f service/cluster.yml
+sed -e "s#\${DEPLOY_IMAGE_NAME}#$DEPLOY_IMAGE_NAME#" service/cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
