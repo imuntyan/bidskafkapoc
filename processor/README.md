@@ -16,3 +16,4 @@ The following section walks you though what is required to set up on your develo
 
 * [Development Environmental Setup](docs/dev_env_setup.md)
 * [Set Up Kafka](docs/kafka_setup.md)
+
