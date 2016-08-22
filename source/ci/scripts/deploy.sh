@@ -14,7 +14,7 @@ export DEPLOY_IMAGE_NAME="$deploy_image_name"
 
 echo $DEPLOY_IMAGE_NAME
 
-#kubectl config set DEPLOY_IMAGE_NAME "$deploy_image_name"
+kubectl config set DEPLOY_IMAGE_NAME "$deploy_image_name"
 
 kubectl --kubeconfig=kubeconfig apply -f service/service.yml
 
