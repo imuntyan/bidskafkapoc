@@ -1,18 +1,21 @@
 ---
+
 resources:
 - name: resource-bidskafkapoc
   type: git
   source:
-    uri: https://github.com/reasonthearchitect/bidskafkapoc.git
+    uri: https://github.com/imuntyan/bidskafkapoc.git
     branch: master
 
 - name: bidskafkapoc-docker-image
   type: docker-image
+  save: true
   source:
     repository: {{docker-hub-image-name}}
     email: {{docker-hub-email}}
     username: {{docker-hub-username}}
     password: {{docker-hub-api-key}}
+
 
 jobs:
 - name: job-build-docker
@@ -20,9 +23,30 @@ jobs:
   serial: true
   plan:
     - get: resource-bidskafkapoc
-      trigger: true
+      #trigger: true
     - task: job-build
-      file: resource-bidskafkapoc/ci/tasks/package.yml
+      file: resource-bidskafkapoc/processor/ci/tasks/package.yml
     - put: bidskafkapoc-docker-image
       params:
         build: resource-jar
+
+- name: job-deploy-kubernetes
+  public: true
+  serial: true
+  plan:
+    - get: bidskafkapoc-docker-image
+      passed: [job-build-docker]
+      #trigger: true
+    - get: resource-bidskafkapoc
+      #passed: [job-build-docker]
+    - task: job-deploy
+      file: resource-bidskafkapoc/processor/ci/tasks/deploy.yml
+      params:
+        k8s_ip: {{kubernetes_cluster_ip}}
+        k8s_dns_name: {{kubernetes_cluster_url}}
+        k8s_cluster_ca: {{kubernetes_cluster_ca}}
+        k8s_admin_key: {{kubernetes_admin_key}}
+        k8s_admin_cert: {{kubernetes_admin_cert}}
+        deploy_image_name: {{docker-hub-image-name}}
+        app_name: poc-kafka-processor
+        app_port: 8090
