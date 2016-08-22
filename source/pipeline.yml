@@ -29,15 +29,13 @@ jobs:
     - put: bidskafkapoc-docker-image
       params:
         build: resource-jar
-      get_params:
-        save: true
 
 - name: job-deploy-kubernetes
   public: true
   serial: true
   plan:
     - get: bidskafkapoc-docker-image
-      #passed: [job-build-docker]
+      passed: [job-build-docker]
       #trigger: true
     - get: resource-bidskafkapoc
       #passed: [job-build-docker]
