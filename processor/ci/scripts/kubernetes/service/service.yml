@@ -8,7 +8,7 @@ metadata:
 spec:
   ports:
   - port: ${APP_PORT}
-    targetPort: ${APP_PORT}
+#    targetPort: ${APP_PORT}
   selector:
     app: ${APP_NAME}
 #  type: LoadBalancer
