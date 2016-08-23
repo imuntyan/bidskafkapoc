@@ -11,5 +11,5 @@ outputs:
   - name: resource-jar
 
 run:
-  path: ./resource-bidskafkapoc/ci/scripts/package.sh
+  path: ./resource-bidskafkapoc/sink/ci/scripts/package.sh
 

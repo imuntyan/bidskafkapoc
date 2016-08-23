@@ -2,7 +2,7 @@
 
 echo "$k8s_ip $k8s_dns_name"
 
-cd resource-bidskafkapoc/processor/ci/scripts/kubernetes
+cd resource-bidskafkapoc/sink/ci/scripts/kubernetes
 
 mkdir credentials
 
