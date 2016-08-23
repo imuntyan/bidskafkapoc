@@ -11,4 +11,4 @@ spec:
     targetPort: ${APP_PORT}
   selector:
     app: ${APP_NAME}
-  type: LoadBalancer
+#  type: LoadBalancer
