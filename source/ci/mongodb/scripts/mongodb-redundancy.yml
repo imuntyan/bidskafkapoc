@@ -6,7 +6,10 @@ metadata:
   labels:
     name: mongo-svc-null
 spec:
-#  type: None
-#  ports:
+  ClusterIP: None
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
   selector:
     mongo-rs-name: mongo
