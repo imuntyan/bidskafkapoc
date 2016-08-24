@@ -7,6 +7,7 @@ resources:
     uri: https://github.com/imuntyan/bidskafkapoc.git
     branch: master
 
+jobs:
 - name: job-deploy-kubernetes
   public: true
   serial: true
