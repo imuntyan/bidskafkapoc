@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc-null
+  labels:
+    name: mongo-svc-null
+spec:
+#  type: None
+#  ports:
+  selector:
+    mongo-rs-name: mongo

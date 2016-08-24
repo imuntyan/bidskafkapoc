@@ -14,6 +14,7 @@ spec:
       labels:
         name: mongo-node${n}
         instance: mongo-node${n}
+        mongo-rs-name: mongo
     spec:
       containers:
       - name: mongo-node${n}
