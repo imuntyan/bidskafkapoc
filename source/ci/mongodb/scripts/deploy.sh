@@ -32,3 +32,5 @@ sed -e "s#\${n}#2#" \
 sed -e "s#\${n}#3#" \
   -e "s#\${volumeID}#$VOLUME_ID_3#" \
   scripts/mongodb-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
+
+kubectl --kubeconfig=kubeconfig apply -f scripts/mongodb-redundancy.yml
