@@ -6,7 +6,7 @@ metadata:
   labels:
     name: mongo-svc-null
 spec:
-  ClusterIP: None
+  clusterIP: None
   ports:
   - port: 80
     targetPort: 80
