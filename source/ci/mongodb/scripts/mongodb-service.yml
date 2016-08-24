@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-svc-${n}
+  labels:
+    name: mongo-svc-${n}
+
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 27017
+      targetPort: 27017
+      protocol: TCP
+      name: mongo-svc-${n}
+  selector:
+    name: mongo-node${n}
+    instance: mongo-node${n}

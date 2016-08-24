@@ -1,0 +1,24 @@
+---
+
+resources:
+- name: resource-bidskafkapoc
+  type: git
+  source:
+    uri: https://github.com/imuntyan/bidskafkapoc.git
+    branch: master
+
+- name: job-deploy-kubernetes
+  public: true
+  serial: true
+  plan:
+    - get: resource-bidskafkapoc
+    - task: job-deploy
+      file: resource-bidskafkapoc/source/ci/mongodb/tasks/deploy.yml
+      params:
+        k8s_cluster_ca: {{kubernetes_cluster_ca}}
+        k8s_admin_key: {{kubernetes_admin_key}}
+        k8s_admin_cert: {{kubernetes_admin_cert}}
+        VOLUME_ID_1: vol-04c72880970032a35
+        VOLUME_ID_2: vol-040987b4ec9626cd2
+        VOLUME_ID_3: vol-01e58dc3d520031b5
+
