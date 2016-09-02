@@ -21,4 +21,5 @@ params:
 
 run:
   path: ./resource-bidskafkapoc/source/ci/scripts/deploy.sh
+  user: root
 
