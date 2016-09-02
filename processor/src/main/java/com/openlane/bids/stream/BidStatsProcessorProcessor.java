@@ -1,11 +1,14 @@
 package com.openlane.bids.stream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.DBCollection;
 import com.openlane.bids.dto.BidDto;
 import com.openlane.bids.dto.BidStatsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -36,12 +39,20 @@ public class BidStatsProcessorProcessor {
 		return new BigDecimal(count);
 	}
 
+	@Autowired
+	private MongoTemplate mongoTemplate;
+
+
 	@StreamListener("bids")
   	@SendTo("bidstats")
   	public Message<?> handle(BidDto bid) {
     	BidStatsDto bidStatsDto= new BidStatsDto();
 
 		BigDecimal vehicleId = bid.getVehicleId();
+
+
+		DBCollection dbCollection = mongoTemplate.getCollection("aaa");
+		System.out.println(dbCollection.count());
 
 		bidStatsDto.setCount(increment(vehicleId));
 		bidStatsDto.setAmount(bid.getAmount());

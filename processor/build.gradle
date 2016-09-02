@@ -16,7 +16,8 @@ plugins {
 
 dependencyManagement {
   imports {
-    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR3'
+      mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5'
+      mavenBom 'org.springframework.data:spring-data-releasetrain:Gosling-SR4'
   }
 }
 
@@ -34,6 +35,7 @@ apply from: 'gradle/conf/metrics.gradle'
 apply from: 'gradle/conf/spring-cloud.gradle'
 apply from: 'gradle/conf/streams.gradle'
 apply from: 'gradle/conf/utils.gradle'
+apply from: 'gradle/conf/mongodb.gradle'
 
 apply from: 'gradle/conf/test/integration.gradle'
 apply from: 'gradle/conf/test/unit.gradle'

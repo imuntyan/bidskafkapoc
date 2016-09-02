@@ -10,7 +10,12 @@ async:
     maxPoolSize: 50
     queueCapacity: 10000
 
+
 spring:
+    data:
+        mongodb:
+            uri: mongodb://a47d15be16a1611e6bb0a0a115674f32-186641795.us-east-1.elb.amazonaws.com:27017,a47ff46b06a1611e6bb0a0a115674f32-384546770.us-east-1.elb.amazonaws.com:27017,a4828b56f6a1611e6bb0a0a115674f32-1856694701.us-east-1.elb.amazonaws.com:27017/bidstats
+            repositories.enabled: true
     mvc:
         favicon:
             enabled: false
@@ -45,3 +50,4 @@ swagger:
     contact:
     license: Apache 2.0
     licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+
