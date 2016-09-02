@@ -12,4 +12,5 @@ outputs:
 
 run:
   path: ./resource-bidskafkapoc/source/ci/mongodb/scripts/deploy.sh
+  user: root
 
