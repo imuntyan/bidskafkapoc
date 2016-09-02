@@ -14,7 +14,7 @@ async:
 spring:
     data:
         mongodb:
-            uri: mongodb://a696c8c01713411e6aebc0a99633e5c2-1573676446.us-east-1.elb.amazonaws.com:27017,a698511cb713411e6aebc0a99633e5c2-2071484494.us-east-1.elb.amazonaws.com:27017,a699f9f2a713411e6aebc0a99633e5c2-892234296.us-east-1.elb.amazonaws.com:27017/bidstats
+            uri: mongodb://ad70de496713c11e6aebc0a99633e5c2-1890669133.us-east-1.elb.amazonaws.com:27017,ad7251ae3713c11e6aebc0a99633e5c2-215661327.us-east-1.elb.amazonaws.com:27017,ad73cc0ac713c11e6aebc0a99633e5c2-793514269.us-east-1.elb.amazonaws.com:27017/bidstats
             repositories.enabled: true
     mvc:
         favicon:
@@ -28,8 +28,8 @@ spring:
                     group: bidstatsgr
             kafka:
                 binder:
-                    brokers: ae920f55667d011e6bb0a0a115674f32-134534388.us-east-1.elb.amazonaws.com:9092
-                    zkNodes: a28b990ad67d011e6bb0a0a115674f32-870432376.us-east-1.elb.amazonaws.com:2181, a28c4de0267d011e6bb0a0a115674f32-1462874061.us-east-1.elb.amazonaws.com:2181, a28d1fd5a67d011e6bb0a0a115674f32-490104583.us-east-1.elb.amazonaws.com:2181
+                    brokers: affd51b41713d11e6aebc0a99633e5c2-80059859.us-east-1.elb.amazonaws.com:9092
+                    zkNodes: af84efcc2713d11e6aebc0a99633e5c2-506908049.us-east-1.elb.amazonaws.com:2181, af858e426713d11e6aebc0a99633e5c2-874044985.us-east-1.elb.amazonaws.com:2181, af8632bce713d11e6aebc0a99633e5c2-1886510112.us-east-1.elb.amazonaws.com:2181
                 bindings:
                     bids:
                         consumer:
