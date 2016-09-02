@@ -13,4 +13,5 @@ outputs:
 
 run:
   path: ./resource-bidskafkapoc/sink/ci/scripts/deploy.sh
+  user: root
 
