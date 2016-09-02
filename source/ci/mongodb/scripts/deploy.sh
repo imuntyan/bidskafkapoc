@@ -2,6 +2,8 @@
 
 cd resource-bidskafkapoc/source/ci/mongodb
 
+whoami
+
 mkdir credentials
 
 echo "$k8s_cluster_ca" | base64 -d >> credentials/ca.pem
