@@ -28,4 +28,6 @@ if [ ! -z "$public_ip" ]
 then
 sed -e "s#\${KAFKA_ADVERTISED_HOST_NAME}#$public_ip#" \
   scripts/kafka-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
+else
+echo 'kafka cluster not created, /api/v1/namespaces/default/services/kafka-service did not return valid URL!'
 fi
