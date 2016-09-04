@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: zookeeper-1
+        zookeeper-cl-name: zookeeper
     spec:
       containers:
       - name: zoo1
@@ -39,6 +40,7 @@ spec:
     metadata:
       labels:
         app: zookeeper-2
+        zookeeper-cl-name: zookeeper
     spec:
       containers:
       - name: zoo2
@@ -67,6 +69,7 @@ spec:
     metadata:
       labels:
         app: zookeeper-3
+        zookeeper-cl-name: zookeeper
     spec:
       containers:
       - name: zoo3

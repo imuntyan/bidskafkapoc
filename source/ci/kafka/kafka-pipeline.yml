@@ -1,0 +1,22 @@
+---
+
+resources:
+- name: resource-bidskafkapoc
+  type: git
+  source:
+    uri: https://github.com/imuntyan/bidskafkapoc.git
+    branch: master
+
+jobs:
+- name: job-deploy-kafka
+  public: true
+  serial: true
+  plan:
+    - get: resource-bidskafkapoc
+    - task: job-deploy
+      file: resource-bidskafkapoc/source/ci/kafka/tasks/deploy.yml
+      params:
+        k8s_cluster_ca: {{kubernetes_cluster_ca}}
+        k8s_admin_key: {{kubernetes_admin_key}}
+        k8s_admin_cert: {{kubernetes_admin_cert}}
+
