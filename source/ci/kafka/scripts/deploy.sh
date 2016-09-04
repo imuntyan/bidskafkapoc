@@ -13,7 +13,10 @@ kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-redundancy.yml
 kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-services.yml
 kubectl --kubeconfig=kubeconfig apply -f scripts/kafka-service.yml
 
-sleep 5
+kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-cluster.yml
+
+sleep 10
+
 
 rm -f proxy.log proxy.pid
 touch proxy.log
@@ -26,8 +29,6 @@ public_ip=`curl -s $URL 2>&1 | grep '\"hostname\"' | awk '{print $2}' | awk -F\"
 kill `cat proxy.pid`
 echo $public_ip
 
-
-kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-cluster.yml
 
 sed -e "s#\${KAFKA_ADVERTISED_HOST_NAME}#$public_ip#" \
   scripts/kafka-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
