@@ -8,7 +8,7 @@ resources:
     branch: master
 
 jobs:
-- name: job-deploy-kafka
+- name: job-deploy-zookeeper
   public: true
   serial: true
   plan:
