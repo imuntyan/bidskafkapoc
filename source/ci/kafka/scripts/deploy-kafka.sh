@@ -8,15 +8,9 @@ echo "$k8s_cluster_ca" | base64 -d >> credentials/ca.pem
 echo "$k8s_admin_cert" | base64 -d >> credentials/admin.pem
 echo "$k8s_admin_key" | base64 -d >> credentials/admin-key.pem
 
-
-kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-redundancy.yml
-kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-services.yml
-kubectl --kubeconfig=kubeconfig apply -f scripts/kafka-service.yml
-
-kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-cluster.yml
+kubectl --kubeconfig=kubeconfig apply -f scripts/kafka-services.yml
 
 sleep 10
-
 
 rm -f proxy.log proxy.pid
 touch proxy.log
@@ -30,5 +24,8 @@ kill `cat proxy.pid`
 echo $public_ip
 
 
+if [ ! -z "$public_ip" ]
+then
 sed -e "s#\${KAFKA_ADVERTISED_HOST_NAME}#$public_ip#" \
   scripts/kafka-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
+fi

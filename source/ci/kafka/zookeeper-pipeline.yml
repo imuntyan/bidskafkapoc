@@ -14,7 +14,7 @@ jobs:
   plan:
     - get: resource-bidskafkapoc
     - task: job-deploy
-      file: resource-bidskafkapoc/source/ci/kafka/tasks/deploy_kafka.yml
+      file: resource-bidskafkapoc/source/ci/kafka/tasks/deploy_zookeeper.yml
       params:
         k8s_cluster_ca: {{kubernetes_cluster_ca}}
         k8s_admin_key: {{kubernetes_admin_key}}

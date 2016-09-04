@@ -11,6 +11,6 @@ outputs:
   - name: resource-k8s
 
 run:
-  path: ./resource-bidskafkapoc/source/ci/kafka/scripts/deploy.sh
+  path: ./resource-bidskafkapoc/source/ci/kafka/scripts/deploy-kafka.sh
   user: root
 
