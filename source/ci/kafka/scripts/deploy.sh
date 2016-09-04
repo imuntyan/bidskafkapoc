@@ -13,6 +13,7 @@ kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-redundancy.yml
 kubectl --kubeconfig=kubeconfig apply -f scripts/zookeeper-services.yml
 kubectl --kubeconfig=kubeconfig apply -f scripts/kafka-service.yml
 
+sleep 5
 
 rm -f proxy.log proxy.pid
 touch proxy.log
