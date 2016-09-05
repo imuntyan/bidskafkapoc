@@ -7,7 +7,7 @@ import com.openlane.bids.dto.BidStatsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -19,8 +19,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import lombok.extern.java.Log;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 @Log
 @EnableBinding(BidStatsProcessorMetadata.class)
@@ -28,19 +26,6 @@ public class BidStatsProcessorProcessor {
 
 	@Autowired
 	ObjectMapper mapper;
-
-	Map<Long, Integer> counts = new HashMap<>();
-	private BigDecimal increment(BigDecimal vehicleId)
-	{
-		Long vId = vehicleId.longValue();
-		Integer count = counts.get(vId);
-		if (count == null) count = 0;
-
-		count++;
-		counts.put(vId, count);
-
-		return new BigDecimal(count);
-	}
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
@@ -57,10 +42,10 @@ public class BidStatsProcessorProcessor {
 		DBCollection dbCollection = mongoTemplate.getCollection("bids");
 		Query query = new Query(Criteria.where("vehicleId").is(bid.getVehicleId()));
 		Update update = new Update().inc("count", 1);
-		BidStatsDto bs = mongoTemplate.findAndModify(query, update, BidStatsDto.class);
+		BidStatsDto bs = mongoTemplate.findAndModify(query, update, new FindAndModifyOptions().returnNew(true).upsert(true), BidStatsDto.class);
 		System.out.println(bs.getCount());
 
-		bidStatsDto.setCount(increment(vehicleId));
+		bidStatsDto.setCount(bs.getCount());
 		bidStatsDto.setAmount(bid.getAmount());
 		bidStatsDto.setCreateTime(bid.getCreateTime());
 		bidStatsDto.setVehicleId(vehicleId);
