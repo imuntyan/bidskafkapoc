@@ -9,6 +9,9 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -51,8 +54,11 @@ public class BidStatsProcessorProcessor {
 		BigDecimal vehicleId = bid.getVehicleId();
 
 
-		DBCollection dbCollection = mongoTemplate.getCollection("aaa");
-		System.out.println(dbCollection.count());
+		DBCollection dbCollection = mongoTemplate.getCollection("bids");
+		Query query = new Query(Criteria.where("vehicleId").is(bid.getVehicleId()));
+		Update update = new Update().inc("count", 1);
+		BidStatsDto bs = mongoTemplate.findAndModify(query, update, BidStatsDto.class);
+		System.out.println(bs.getCount());
 
 		bidStatsDto.setCount(increment(vehicleId));
 		bidStatsDto.setAmount(bid.getAmount());
