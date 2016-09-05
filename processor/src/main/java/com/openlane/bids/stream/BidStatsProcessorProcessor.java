@@ -34,6 +34,9 @@ public class BidStatsProcessorProcessor {
 	@StreamListener("bids")
   	@SendTo("bidstats")
   	public Message<?> handle(BidDto bid) {
+
+		log.info("received message " + bid);
+
     	BidStatsDto bidStatsDto= new BidStatsDto();
 
 		BigDecimal vehicleId = bid.getVehicleId();
@@ -43,7 +46,6 @@ public class BidStatsProcessorProcessor {
 		Query query = new Query(Criteria.where("vehicleId").is(bid.getVehicleId()));
 		Update update = new Update().inc("count", 1);
 		BidStatsDto bs = mongoTemplate.findAndModify(query, update, new FindAndModifyOptions().returnNew(true).upsert(true), BidStatsDto.class);
-		System.out.println(bs.getCount());
 
 		bidStatsDto.setCount(bs.getCount());
 		bidStatsDto.setAmount(bid.getAmount());
@@ -51,6 +53,9 @@ public class BidStatsProcessorProcessor {
 		bidStatsDto.setVehicleId(vehicleId);
 
 		try {
+
+			log.info("sending message " + bidStatsDto);
+
 			return MessageBuilder.withPayload(
 					mapper.writeValueAsString(bidStatsDto)
 			)

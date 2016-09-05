@@ -33,6 +33,7 @@ public class BidProducerSource {
                                 .setHeader("contentType", "application/json")
                                 .build();
                         post.send(message);
+                        log.info("sent message " + bid);
                 } catch (Exception ex) {
                         log.log(Level.SEVERE, "Error trying to send a message to a queue: ", ex);
                 }        

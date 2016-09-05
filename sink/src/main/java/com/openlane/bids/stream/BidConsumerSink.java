@@ -29,6 +29,8 @@ public class BidConsumerSink {
 
     @StreamListener("bidstats")
     public void sink(BidStatsDto bidStats) {
+
+        log.info("received message " + bidStats);
         
         try {
             log.log(Level.INFO, this.mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bidStats));
