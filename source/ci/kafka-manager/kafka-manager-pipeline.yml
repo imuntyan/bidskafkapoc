@@ -1,10 +1,18 @@
 ---
 
+resources:
+- name: resource-bidskafkapoc
+  type: git
+  source:
+    uri: https://github.com/imuntyan/bidskafkapoc.git
+    branch: master
+
 jobs:
 - name: job-deploy-kafka-manager
   public: true
   serial: true
   plan:
+    - get: resource-bidskafkapoc
     - task: job-deploy-kafka-manager
       file: resource-bidskafkapoc/source/ci/kafka-manager/tasks/deploy-kafka-manager.yml
       params:
