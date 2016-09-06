@@ -1,0 +1,16 @@
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: wernight/kubectl}
+
+inputs:
+  - name: resource-bidskafkapoc
+
+outputs:
+  - name: resource-k8s
+
+run:
+  path: ./resource-bidskafkapoc/source/ci/kafka/scripts/deploy-kafka-manager.sh
+  user: root
+

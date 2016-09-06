@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: kafka-manager-controller
+spec:
+  replicas: 1
+  selector:
+    app: kafka-manager
+  template:
+    metadata:
+      labels:
+        app: kafka-manager
+    spec:
+      containers:
+      - name: kafka-manager
+        image: sheepkiller/kafka-manager-docker
+        ports:
+        - containerPort: 9000
+        env:
+        - name: APPLICATION_SECRET
+          value: "changeme"
+        - name: KM_ARGS
+          value: -Djava.net.preferIPv4Stack=true
+        - name: ZK_HOSTS
+          value: zoo1:2181,zoo2:2181,zoo3:2181
