@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd resource-bidskafkapoc/source/ci/kafka
+cd resource-bidskafkapoc/source/ci/kafka-manager
 
 mkdir credentials
 
