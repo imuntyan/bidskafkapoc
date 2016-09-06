@@ -4,7 +4,7 @@ kind: ReplicationController
 metadata:
   name: ${APP_NAME}-controller
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     app: ${APP_NAME}
   template:
