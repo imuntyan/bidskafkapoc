@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kafka-manager
-        image: sheepkiller/kafka-manager-docker
+        image: sheepkiller/kafka-manager:stable
         ports:
         - containerPort: 9000
         env:
