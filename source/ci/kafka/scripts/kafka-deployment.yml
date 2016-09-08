@@ -1,18 +1,4 @@
 ---
----
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: kafka-volume-${n}
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-
-
----
 apiVersion: v1
 kind: Deployment
 metadata:
