@@ -5,8 +5,6 @@ metadata:
   name: kafka-deployment
 spec:
   replicas: 1
-  selector:
-    app: kafka-${n}
   template:
     metadata:
       labels:
