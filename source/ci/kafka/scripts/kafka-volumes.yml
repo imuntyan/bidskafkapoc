@@ -1,0 +1,23 @@
+---
+kind: StorageClass
+apiVersion: extensions/v1beta1
+metadata:
+  name: kafka-volume-storage
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: kafka-volume-claim
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "kafka-volume-storage"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
