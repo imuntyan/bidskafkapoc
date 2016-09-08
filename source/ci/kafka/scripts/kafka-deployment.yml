@@ -1,3 +1,16 @@
+---
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: kafka-volume-${n}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
 
 ---
 apiVersion: v1
@@ -27,8 +40,4 @@ spec:
         - name: KAFKA_ZOOKEEPER_CONNECT
           value: zoo1:2181,zoo2:2181,zoo3:2181
         - name: KAFKA_CREATE_TOPICS
-          value: mytopic:2:1
-      volumes:
-      - name: kafka-volume-${n}
-        persistentVolumeClaim:
-          claimName: kafka-volume-claim
+          value: bids:12:2,bidstats:12:2

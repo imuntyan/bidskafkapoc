@@ -8,8 +8,6 @@ echo "$k8s_cluster_ca" | base64 -d >> credentials/ca.pem
 echo "$k8s_admin_cert" | base64 -d >> credentials/admin.pem
 echo "$k8s_admin_key" | base64 -d >> credentials/admin-key.pem
 
-kubectl --kubeconfig=kubeconfig apply -f scripts/kafka-volumes.yml
-
 sed -e "s#\${n}#1#" \
   scripts/kafka-service.yml | kubectl --kubeconfig=kubeconfig apply -f -
 sed -e "s#\${n}#2#" \
@@ -33,10 +31,10 @@ if [ ! -z "$public_ip" ]
 then
 sed -e "s#\${KAFKA_ADVERTISED_HOST_NAME}#$public_ip#" \
   -e "s#\${n}#1#" \
-  scripts/kafka-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
+  scripts/kafka-deployment.yml | kubectl --kubeconfig=kubeconfig apply -f -
 sed -e "s#\${KAFKA_ADVERTISED_HOST_NAME}#$public_ip#" \
   -e "s#\${n}#2#" \
-  scripts/kafka-cluster.yml | kubectl --kubeconfig=kubeconfig apply -f -
+  scripts/kafka-deployment.yml | kubectl --kubeconfig=kubeconfig apply -f -
 else
 echo 'kafka cluster not created, /api/v1/namespaces/default/services/kafka-service did not return valid URL!'
 fi
