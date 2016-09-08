@@ -1,6 +1,6 @@
 ---
 kind: StorageClass
-apiVersion: extensions/v1beta1
+apiVersion: v1
 metadata:
   name: kafka-volume-storage
 provisioner: kubernetes.io/aws-ebs
